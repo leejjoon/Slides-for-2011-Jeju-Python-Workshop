@@ -262,7 +262,7 @@ http://matplotlib.sourceforge.net/mpl_toolkits/axes_grid/index.html#toolkit-axes
 
 ----
 
-.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/scatter_hist.hires.png
+.. image:: co_peakT_pv_map.jpg
    :height: 400
 
 ----
@@ -321,12 +321,13 @@ Annotation w/ Arrows
 .. code-block:: python
 
     plt.plot([0.2], [0.2], "o")
-    plt.annotate("Test",
-                 xy=(0.2, 0.2), xycoords='data',
-                 xytext=(50, 50), textcoords='offset points',
-                 arrowprops=dict(arrowstyle="->", shrinkB=10),
-                 size=30
-                 )
+    ann = plt.annotate("Test",
+                       xy=(0.2, 0.2), xycoords='data',
+                       xytext=(50, 50), textcoords='offset points',
+                       arrowprops=dict(arrowstyle="->", shrinkB=10,
+                                       connectionstyle="angle3"),
+                       size=30
+                       )
 
 .. image:: demo08.jpg
    :height: 300
@@ -346,3 +347,9 @@ Annotation w/ Arrows
 .. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_01.hires.png
    :height: 450
 
+----
+
+----
+
+bbox_inches
+tight_layout
