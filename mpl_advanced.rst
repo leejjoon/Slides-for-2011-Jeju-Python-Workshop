@@ -3,6 +3,11 @@ Publication quality figures w/ Matplotlib
 
 ----
 
+http://goo.gl/SOMbY
+===================
+
+----
+
 Publication quality figures w/ Matplotlib
 -----------------------------------------
 
@@ -79,6 +84,16 @@ matplotlib tries to make easy things easy and hard things possible!
 
 ----
 
+RTFM
+====
+
+Read The **Fine** Manual
+
+.. image:: rtfm.jpg
+   :height: 400
+
+----
+
 Matplotlib design
 =================
 
@@ -130,6 +145,61 @@ Artists : Object who renders into a Figure
 - images
 - collections
 - etc.
+
+----
+
+What does draw() do?
+====================
+
+- create a renderer if not exists
+
+- call Figure.draw(renderer)
+
+  - call Axes.draw(renderer) for axes instances in Figure.axes.
+
+    - update the axes location accounting the aspect.
+
+    - call Artist.draw(renderer) for artists in the axes
+
+      - update artist 
+
+      - create a GC (color, line width etc.)
+
+      - draw using the renderer (e.g., Renderer.draw_path)
+
+----
+
+
+.. code-block:: python
+
+    def draw(self, renderer):
+        'Draw the :class:`Patch` to the given *renderer*.'
+        if not self.get_visible(): return
+
+        renderer.open_group('patch', self.get_gid())
+        gc = renderer.new_gc()
+
+        gc.set_foreground(self._edgecolor, isRGB=True)
+
+        lw = self._linewidth
+        if self._edgecolor[3] == 0:
+            lw = 0
+        gc.set_linewidth(lw)
+        gc.set_linestyle(self._linestyle)
+
+	# ....
+
+        path = self.get_path()
+        transform = self.get_transform()
+        tpath = transform.transform_path_non_affine(path)
+        affine = transform.get_affine()
+
+	# may use path_effects ..
+	renderer.draw_path(gc, tpath, affine, rgbFace)
+
+        gc.restore()
+        renderer.close_group('patch')
+
 
 ----
 
@@ -248,7 +318,7 @@ http://matplotlib.sourceforge.net/mpl_toolkits/axes_grid/index.html#toolkit-axes
                     nrows_ncols = (2, 2), # creates 2x2 grid of axes
                     axes_pad=0.1, # pad between axes in inch.
                     )
-   for ax in grid:
+   for ax in grid: # sequence-like interface for axes in the grid
       ax.imshow(arr)
 
 
@@ -272,6 +342,41 @@ http://matplotlib.sourceforge.net/mpl_toolkits/axes_grid/index.html#toolkit-axes
 
 
 ----
+
+tight_layout & savefig w/ bbox_inches="tight"
+---------------------------------------------
+
+-
+- new in mpl v1.1
+
+.. code-block:: python
+
+    plt.plot([0, 1], [0, 1], "-")
+    plt.tight_layout()
+ 
+    plt.gca().set_aspect(1)
+    plt.tight_layout()
+    plt.savefig("a.png", bbox_inches="tight")
+
+----
+
+Path
+====
+
+http://matplotlib.sourceforge.net/users/path_tutorial.html#path-tutorial
+
+.. image:: http://matplotlib.sourceforge.net/_images/9f2e84e526.png
+   :height: 500
+
+----
+
+http://matplotlib.sourceforge.net/examples/pylab_examples/dolphin.html
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/dolphin.hires.png
+   :width: 550
+
+----
+
 
 Text & TeX
 ==========
@@ -332,6 +437,12 @@ Annotation w/ Arrows
 .. image:: demo08.jpg
    :height: 300
 
+annoation are dragable.
+
+.. code-block:: python
+
+    ann.dragable()
+
 ----
 
 .. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/fancyarrow_demo.hires.png
@@ -347,9 +458,198 @@ Annotation w/ Arrows
 .. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_01.hires.png
    :height: 450
 
-----
 
 ----
 
-bbox_inches
-tight_layout
+Text as path
+------------
+
+- http://matplotlib.sourceforge.net/examples/pylab_examples/demo_text_path.html
+
+.. image::  http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_text_path.hires.png
+   :height: 500
+
+----
+
+patheffects
+-----------
+
+- override draw_path method of the backends
+
+.. code-block:: python
+
+    from matplotlib.patheffects import withStroke
+    imshow([[1,2],[2,3]], interpolation="bilinear")
+    txt = annotate("test", (1., 1.), (0., 0),
+                   arrowprops=dict(arrowstyle="->",
+                                   connectionstyle="angle3", lw=2),
+                   size=20, ha="center")
+    txt.set_path_effects([withStroke(linewidth=3, foreground="w")])
+    txt.arrow_patch.set_path_effects([withStroke(linewidth=5, foreground="w")])
+
+.. image::  http://matplotlib.sourceforge.net/_images/patheffect_demo.png
+   :width: 700
+
+----
+
+Legend
+======
+
+- legend of complex plots : new in v1.1
+- `example <http://matplotlib.sourceforge.net/rc/v1.1.0rc1/examples/pylab_examples/legend_demo4.html>`_
+
+.. image :: http://matplotlib.sourceforge.net/rc/v1.1.0rc1/mpl_examples/pylab_examples/legend_demo4.hires.png
+   :height: 400
+
+- http://matplotlib.sourceforge.net/users/legend_guide.html
+
+----
+
+- http://matplotlib.sourceforge.net/users/legend_guide.html#legend-location
+
+- use **bbox_to_anchor** and **bbox_transform** parameters to adjust the legend location.
+
+.. image::  http://matplotlib.sourceforge.net/plot_directive/users/plotting/examples/simple_legend01.hires.png
+   :height: 450
+
+----
+
+OffsetBox
+---------
+
+- can be used for artists w/ mixed coordinate systems
+
+  - size : data transform
+  - position : normalized axes transform
+
+- http://matplotlib.sourceforge.net/examples/axes_grid/simple_anchored_artists.html
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/simple_anchored_artists.hires.png
+   :height: 400
+
+----
+
+Inset Axes
+==========
+
+- http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo.html
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/inset_locator_demo.hires.png
+   :width: 600
+
+----
+
+.. code-block:: python
+
+    from mpl_toolkits.axes_grid1.inset_locator import inset_axes, zoomed_inset_axes
+    from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
+
+
+    ax = fig.add_subplot(111)
+    ax.set_aspect(1.)
+
+    axins = inset_axes(ax,
+                       width="30%", # width = 30% of parent_bbox
+                       height=1., # height : 1 inch
+                      loc=3)
+
+    axins.axis[:].toggle(ticklabels=False)
+
+
+
+----
+
+Inset Axes w/ zoom
+------------------
+
+- http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo2.html
+
+.. code-block:: python
+
+    axins = zoomed_inset_axes(ax, 3, loc=1) # zoom = 6
+
+----
+
+Agg filter
+----------
+
+- http://matplotlib.sourceforge.net/examples/pylab_examples/demo_agg_filter.html
+
+demo_aggfilter.py
+-----------------
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_agg_filter.hires.png
+   :height: 450
+
+----
+
+Mixed-mode renderer
+-------------------
+
+- pdf backend and ps backend
+- During the vector backend, temporarily change into rasterization
+  mode. The result is rendered as an image in the vector mode
+
+
+----
+
+mpl_toolkits
+============
+
+- mplot3d
+- axes_grid1
+- axis_artist
+- etc.
+
+----
+
+mplot3d
+-------
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_examples/mplot3d/subplot3d_demo.hires.png
+   :width: 750
+
+----
+
+axisartist
+----------
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axis.hires.png
+   :height: 600
+
+----
+
+.. image:: http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axes.hires.png
+   :width: 750
+
+----
+
+Gallery
+=======
+
+----
+
+.. image:: http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/lbvs/fig_lbvs.hires.png
+   :height: 400
+
+----
+
+.. image:: http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/tycho/tycho_hst_kpno_01.hires.png
+   :height: 400
+
+----
+
+.. image:: isc_stamps.jpg
+   :height: 550
+
+----
+
+.. image:: http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/cfasurvey/cfa_survey.hires.png
+   :height: 400
+
+----
+
+.. image:: http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/healpix/allsky_galactic_proj_06.hires.png
+   :height: 400
+
+

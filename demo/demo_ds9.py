@@ -1,12 +1,12 @@
 import scipy.spatial
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 class Picker(object):
     def __init__(self, xy):
         self.kdtree = scipy.spatial.KDTree(xy)
 
     def pick(self):
-        print "pick an object"
         pos = plt.ginput()
         return self.kdtree.query(pos[0])
 
@@ -46,3 +46,9 @@ def panto():
     ds9.set('crosshair %f %f wcs fk5' % (ra, dec))
     ds9.set('match frames wcs')
     
+
+print "pick an object in the matplotlib figure."
+panto()
+
+print "click on the figure to quit"
+plt.ginput()

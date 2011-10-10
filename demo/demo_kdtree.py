@@ -15,11 +15,11 @@ class Picker(object):
         self.kdtree = scipy.spatial.KDTree(xy)
 
     def pick(self):
-        print "pick an object"
         pos = plt.ginput()
         print self.kdtree.query(pos[0])
 
 picker = Picker(xy)
 
 
-# picker.pick()
+print "pick an object by clicking on the figure"
+picker.pick()

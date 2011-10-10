@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
-#from agg_filter import DropShadowFilter
-
-
 
 if 1: 
 
-    ax = plt.subplot(111)
+    plt.figure(1)
+    ax = plt.subplot(121)
     # draw lines
     l1, = ax.plot([0.1, 0.5, 0.9], [0.5, 0.2, 0.7], "ro-",
                   mec="r", mfc="w", lw=5, mew=3, ms=10, label="Line 1")
@@ -35,9 +33,8 @@ if 1:
 
 
 
-if 1: 
 
-    ax = plt.subplot(111, aspect=1)
+    ax = plt.subplot(122, aspect=1)
     fracs = [15,30,45, 10]
     explode=(0, 0.05, 0, 0)
     pies = ax.pie(fracs, explode=explode)
@@ -56,3 +53,7 @@ if 1:
     shadow = FilteredArtistList(pies[0], gauss)
     ax.add_artist(shadow)
     shadow.set_zorder(pies[0][0].get_zorder()-0.1)
+
+
+    plt.show()
+    

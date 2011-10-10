@@ -3,6 +3,16 @@ Brief overview of Astronomy-related python modules
 
 ----
 
+http://goo.gl/rwWhB
+===================
+
+----
+
+Incomplete & Biased
+===================
+
+----
+
 Don't reinvent the Wheels
 =========================
 
@@ -59,24 +69,42 @@ Get familiar with Python Standard library
 
 ----
 
+demo_re.py
+----------
+
+.. code-block:: python
+
+    test_str = 'circle(19:43:24.2, +04:42:23, 13")'
+     
+    import re
+    p_radec = r'[+-]?\d+:\d+:\d+(?:\.\d*)?'
+    p = re.compile(r"(%s),\s*(%s)" % (p_radec, p_radec))
+     
+    m = p.search(test_str)
+    print m.groups()
+
+
+----
+
 Editor
-------
+======
 
 ----
 
 Version Control System
-----------------------
+======================
 
 - svn
 
 - Distributed VCS
+
  - mercurial (Bitbucket)
  - git (github)
 
 ----
 
 Working in isolated Python environments
----------------------------------------
+=======================================
 
 - virtualenv : http://www.virtualenv.org
 - virtualenvwrapper : http://www.doughellmann.com/projects/virtualenvwrapper/
@@ -115,7 +143,7 @@ Collection of python modules for mathematics, science, and engineering
 ----
 
 demo_kdtree.py
-==============
+--------------
 
 .. code-block:: python
 
@@ -123,14 +151,6 @@ demo_kdtree.py
     import scipy.spatial
     import matplotlib.pyplot as plt
 
-    xy = np.random.rand(20).reshape((10,2))
-     
-    ax = plt.subplot(111, aspect=1)
-    for i, (x1, y1) in enumerate(xy):
-        ax.annotate("%d" % i, xy=(x1, y1), va="center", ha="center",
-                    bbox=dict(boxstyle="round",fc="w"))
-     
-     
     class Picker(object):
         def __init__(self, xy):
             self.kdtree = scipy.spatial.KDTree(xy)
@@ -142,6 +162,17 @@ demo_kdtree.py
      
     picker = Picker(xy)
 
+----
+
+Scikits
+=======
+
+http://scikits.appspot.com/scikits
+
+
+- simple fitting w/ nmpfit : http://stsdas.stsci.edu/pyraf/stscidocs/pytools_pkg/pytools_api/pytools.nmpfit-module.html
+
+
 
 ----
 
@@ -149,6 +180,9 @@ Coordinate Conversion
 =====================
 
 - Coords: http://stsdas.stsci.edu/astrolib/coords_api/index.html
+
+demo_coords.py
+--------------
 
 .. code-block:: python
 
@@ -176,6 +210,9 @@ CSV
   for row in csv.reader(open("test.csv")):
     print row[0], ":".join(row[1:4]), ":".join(row[4:])
 
+demo_csv.py
+-----------
+
 .. code-block:: python
 
   import csv
@@ -189,14 +226,19 @@ CSV
 ATpy
 ----
 
-http://atpy.github.com/
+- http://atpy.github.com/
 
-- FITS tables
-- VO tables
-- HDF5 tables
-- IPAC tables
-- ASCII tables
-- SQL databases
+- provides an unified interface for different types of tables
+
+  - FITS tables
+  - VO tables
+  - HDF5 tables
+  - IPAC tables
+  - ASCII tables
+  - SQL databases
+
+demo_atpy.py
+------------
 
 .. code-block:: python
 
@@ -219,20 +261,27 @@ FITS
 
 - pyfits: http://www.stsci.edu/resources/software_hardware/pyfits
 
+
+demo_pyfits.py
+--------------
+
 .. code-block:: python
 
   import pyfits
 
-  f = pyfits.open("test.fits") # sequence-like interface
+  f = pyfits.open("2mass_J.fits") 
+
   f.info()
 
+  # hdu's are accesed using sequence-like interface
   hdu = f[0]
 
   h = hdu.header # dict-like
+  d = hdu.data # numpy array
+
   print h["CDELT1"], h["CDELT2"]
   h.update("OBSERVER", "Jae-Joon Lee") # for non-existing keys
   
-  d = hdu.data # numpy array
   print d.shape
 
 
@@ -245,12 +294,17 @@ World Coordinate System
 
 - pywcs: https://trac.assembla.com/astrolib and http://stsdas.stsci.edu/astrolib/pywcs/
 
+- wrapper around the wcslib library
+
+demo_wcs.py
+-----------
+
 .. code-block:: python
 
   import pyfits
   import pywcs
 
-  f = pyfits.open("test.fits")
+  f = pyfits.open("2mass_J.fits")
   wcs = pywcs.WCS(f[0].header)
 
   xy_pix = np.asarray([[f[0].header["CRPIX1"], f[0].header["CRPIX2"]]])
@@ -272,6 +326,11 @@ Interface w/ ds9
 - pyds9: http://hea-www.harvard.edu/saord/ds9/pyds9/
 
 - pysao: http://code.google.com/p/python-sao/
+
+- wrapper around the xpalib library
+
+  - pyds9 : ctypes
+  - pysao : pyrex (cython)
 
 .. code-block:: python
 
@@ -330,6 +389,9 @@ Region
 
 ----
 
+demo_pyregion.py
+----------------
+
 .. code-block:: python
 
     import pyregion
@@ -362,7 +424,23 @@ Fits Figures
 ============
 
 - aplpy
+
+  - a toolkit built upon matplotlib
+  - easy to use.
+
+- kapteyn
+
 - pywcsgrid2
+
+  - extend the functionality of matplotlib
+  - haevily based on mpl_toolkits.axisartist module
+
+
+----
+
+
+APLpy vs. pywcsgrid2
+--------------------
 
 .. code-block:: python
 
@@ -389,7 +467,21 @@ Fits Figures
 
 ----
 
+ETC
+===
 
-pyraf
-casa
-ciao (sherpa, etc)
+- pyraf
+- casa
+- ciao (sherpa, etc)
+
+----
+
+Resources
+=========
+
+- http://www.scipy.org/Topical_Software
+- http://www.astropython.org/resources
+
+work in progress to organize astronomy-related python modules, similar to the IDL Astronomy
+
+- http://astropy.wikispaces.com/ & http://astropy.org/

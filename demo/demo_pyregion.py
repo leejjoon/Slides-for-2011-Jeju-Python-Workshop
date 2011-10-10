@@ -1,5 +1,6 @@
 import pyregion
 import pyfits
+import matplotlib.pyplot as plt
 
 f = pyfits.open("2mass_H.fits")
 
@@ -18,6 +19,8 @@ print reg2[0].coord_list
 patches, texts = reg2.get_mpl_patches_texts()
 ax.add_patch(patches[0])
 
-ax2 = plt.subplot(122)
 msk = reg2.get_mask(shape=f[0].data.shape)
+ax2 = plt.subplot(122)
 ax2.imshow(msk, origin="lower", cmap="gray")
+
+plt.show()
