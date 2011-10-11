@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Publication quality figures w/ Matplotlib</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="./theme/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="./theme/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="./theme/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Publication quality figures w/ Matplotlib</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Publication quality figures w/ Matplotlib</h2></header>
+            
+            
+            <section><img alt="http://leejjoon.github.com/pywcsgrid2/images/image.jpg" src="http://leejjoon.github.com/pywcsgrid2/images/image.jpg" style="height: 600px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>matplotlib : a python 2D plotting library</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Matplotlib</h2></header>
+            
+            
+            <section><ul class="simple">
+<li>A python 2D plotting library that produces publication quality figures</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>in a variety of hardcopy formats (ps, pdf, svg, png, etc)</li>
+<li>and interactive environments (gtk, tk, qt, wx, html5, etc)</li>
+<li>across platforms (linux&amp;unix, mac os X, windows).</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>When integrated with ipython, provides a powerful interactive environment (ala MATLAB or Mathematica).</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>matplotlib tries to make easy things easy and hard things possible!</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><pre><span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre>
+<img alt="./demo01.png" src="./demo01.png" style="height: 450px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/finance_demo.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/finance_demo.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/boxplot_demo2.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/boxplot_demo2.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/finance_work2.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/finance_work2.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/lbvs/fig_lbvs.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/lbvs/fig_lbvs.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/tycho/tycho_hst_kpno_01.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/tycho/tycho_hst_kpno_01.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/cfasurvey/cfa_survey.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/cfasurvey/cfa_survey.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/healpix/allsky_galactic_proj_06.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/healpix/allsky_galactic_proj_06.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>RTFM</h1></header>
+            
+            
+            <section><p>Read The <strong>Fine</strong> Manual</p>
+<img alt="./rtfm.jpg" src="./rtfm.jpg" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Matplotlib design</h1></header>
+            
+            
+            <section><p>The matplotlib code is conceptually divided into three parts:</p>
+<ul class="simple">
+<li>backends : drawing devices, aka renderers, that transform the frontend representation to hardcopy or a display device (ps, pdf, etc.)</li>
+<li>frontend (matplotlib API) : set of classes that do the heavy lifting, creating and managing figures, text, lines, plots and so on. This is an abstract interface that knows nothing about output.</li>
+<li>pylab interface : the set of functions which allow the user to create plots with code quite similar to MATLAB</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Backends</h1></header>
+            
+            
+            <section><h2>An abstract base class to handle drawing/rendering operations.</h2>
+
+
+<h2>The following methods must be implemented in the backend</h2>
+<ul class="simple">
+<li>draw_path</li>
+<li>draw_image</li>
+<li>draw_text (from v1.0, draw_tex is now optional)</li>
+<li>get_text_width_height_descent</li>
+</ul>
+
+
+<h2>Matpotlib is vector-vased drawing library</h2>
+
+
+<h2>The following methods should be implemented in the backend for optimization reasons</h2>
+<ul class="simple">
+<li>draw_markers</li>
+<li>draw_path_collection</li>
+<li>draw_quad_mesh</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Frontends : APIs</h1></header>
+            
+            
+            <section><h2>Artists : Object who renders into a Figure</h2>
+<ul class="simple">
+<li>texts</li>
+<li>lines (with markers)</li>
+<li>patches (e.g., rectangles in histogram)</li>
+<li>images</li>
+<li>collections</li>
+<li>etc.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>What does draw() do?</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>create a renderer if not exists</li>
+<li>call Figure.draw(renderer)<ul>
+<li>call Axes.draw(renderer) for axes instances in Figure.axes.<ul>
+<li>update the axes location accounting the aspect.</li>
+<li>call Artist.draw(renderer) for artists in the axes<ul>
+<li>update artist</li>
+<li>create a GC (color, line width etc.)</li>
+<li>draw using the renderer (e.g., Renderer.draw_path)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><pre><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderer</span><span class="p">):</span>
+    <span class="s">&#39;Draw the :class:`Patch` to the given *renderer*.&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_visible</span><span class="p">():</span> <span class="k">return</span>
+
+    <span class="n">renderer</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span><span class="s">&#39;patch&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gid</span><span class="p">())</span>
+    <span class="n">gc</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">new_gc</span><span class="p">()</span>
+
+    <span class="n">gc</span><span class="o">.</span><span class="n">set_foreground</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edgecolor</span><span class="p">,</span> <span class="n">isRGB</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">lw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linewidth</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edgecolor</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lw</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="n">lw</span><span class="p">)</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_linestyle</span><span class="p">)</span>
+
+    <span class="c"># ....</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()</span>
+    <span class="n">tpath</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform_path_non_affine</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">affine</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">get_affine</span><span class="p">()</span>
+
+    <span class="c"># may use path_effects ..</span>
+    <span class="n">renderer</span><span class="o">.</span><span class="n">draw_path</span><span class="p">(</span><span class="n">gc</span><span class="p">,</span> <span class="n">tpath</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">rgbFace</span><span class="p">)</span>
+
+    <span class="n">gc</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span>
+    <span class="n">renderer</span><span class="o">.</span><span class="n">close_group</span><span class="p">(</span><span class="s">&#39;patch&#39;</span><span class="p">)</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Pylab interface</h1></header>
+            
+            
+            <section><p>MATLAB-like environments</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Figure</h1></header>
+            
+            
+            <section><h2>A figure in matplotlib means the whole window in the user interface.</h2>
+
+
+<h2>Within this figure, there can be axes.</h2>
+<ul class="simple">
+<li>subplot is an axes who positions in a regular grid</li>
+<li>axes allows free placement within the figure</li>
+</ul>
+
+
+<h2>Axes positions are specified in normalized figure coordinate</h2>
+<ul class="simple">
+<li>axes([left, bottom, width, height])</li>
+<li>axes([0.1, 0.1, 0.8, 0.8])</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>GridSpec : advanced subplot</h1></header>
+            
+            
+            <section><p>See <a class="reference external" href="http://matplotlib.sourceforge.net/users/gridspec.html">http://matplotlib.sourceforge.net/users/gridspec.html</a></p>
+<pre><span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">as</span> <span class="nn">gridspec</span>
+
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/users/plotting/examples/demo_gridspec02.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/users/plotting/examples/demo_gridspec02.hires.png" style="height: 300px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Embedded subplots</h2></header>
+            
+            
+            <section><pre><span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span><span class="p">,</span> <span class="n">GridSpecFromSubplotSpec</span>
+
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">gs1</span> <span class="o">=</span> <span class="n">GridSpecFromSubplotSpec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">subplot_spec</span><span class="o">=</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre>
+<img alt="./demo02.jpg" src="./demo02.jpg" style="height: 300px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Axes w/ a fixed aspec ratio</h1></header>
+            
+            
+            <section><h2>Axes positions are specified in normalized figure coordinate</h2>
+<ul class="simple">
+<li>This is good for interactive mode.</li>
+<li>But for axes with fixed aspect ratio, it's difficult to control the
+spacing between axes.</li>
+</ul>
+<img alt="./demo03.jpg" src="./demo03.jpg" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              24/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><pre><span class="n">fig</span><span class="p">,</span> <span class="n">ax_list</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">ax_list</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</pre>
+<img alt="./demo04.jpg" src="./demo04.jpg" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              25/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>mpl_toolkits.axes_grid1</h1></header>
+            
+            
+            <section><p><a class="reference external" href="http://matplotlib.sourceforge.net/mpl_toolkits/axes_grid/index.html#toolkit-axesgrid-index">http://matplotlib.sourceforge.net/mpl_toolkits/axes_grid/index.html#toolkit-axesgrid-index</a></p>
+<pre><span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">ImageGrid</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ImageGrid</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="c"># similar to subplot(111)</span>
+                 <span class="n">nrows_ncols</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="c"># creates 2x2 grid of axes</span>
+                 <span class="n">axes_pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="c"># pad between axes in inch.</span>
+                 <span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span> <span class="c"># sequence-like interface for axes in the grid</span>
+   <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</pre>
+<img alt="./demo05.jpg" src="./demo05.jpg" style="height: 300px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_axes_grid.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_axes_grid.hires.png" style="height: 350px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              27/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="./co_peakT_pv_map.jpg" src="./co_peakT_pv_map.jpg" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              28/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/inset_locator_demo2.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/inset_locator_demo2.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              29/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>tight_layout &amp; savefig w/ bbox_inches=&quot;tight&quot;</h2></header>
+            
+            
+            <section><ul class="simple">
+<li></li>
+<li>new in mpl v1.1</li>
+</ul>
+<pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&quot;-&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;a.png&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s">&quot;tight&quot;</span><span class="p">)</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              30/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Path</h1></header>
+            
+            
+            <section><p><a class="reference external" href="http://matplotlib.sourceforge.net/users/path_tutorial.html#path-tutorial">http://matplotlib.sourceforge.net/users/path_tutorial.html#path-tutorial</a></p>
+<img alt="http://matplotlib.sourceforge.net/_images/9f2e84e526.png" src="http://matplotlib.sourceforge.net/_images/9f2e84e526.png" style="height: 500px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              31/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><p><a class="reference external" href="http://matplotlib.sourceforge.net/examples/pylab_examples/dolphin.html">http://matplotlib.sourceforge.net/examples/pylab_examples/dolphin.html</a></p>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/dolphin.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/dolphin.hires.png" style="width: 550px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              32/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Text &amp; TeX</h1></header>
+            
+            
+            <section><h2>matplotlib support TeX rendering (using TeX)</h2>
+<pre><span class="n">tex_string</span> <span class="o">=</span> <span class="s">r&#39;$\displaystyle \mathcal{F} = \int f\left( \phi, c \right)&#39;</span> \
+             <span class="s">r&#39;dV$, $\displaystyle\frac{ \partial \phi } { \partial t }&#39;</span> \
+             <span class="s">r&#39;= -M_{ \phi } \frac{ \delta \mathcal{F} }&#39;</span> \
+             <span class="s">r&#39;{ \delta \phi }$&#39;</span>
+
+<span class="n">bbox_props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&quot;0.9&quot;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">&quot;0.5&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">tex_string</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;color&#39;</span> <span class="p">:</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;fontsize&#39;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="n">bbox_props</span><span class="p">)</span>
+</pre>
+<img alt="./demo07.jpg" src="./demo07.jpg" style="height: 300px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              33/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Annotation</h1></header>
+            
+            
+            <section><p><a class="reference external" href="http://matplotlib.sourceforge.net/users/annotations_guide.html">http://matplotlib.sourceforge.net/users/annotations_guide.html</a></p>
+
+<h2>Box around Text</h2>
+<img alt="http://matplotlib.sourceforge.net/_images/fancybox_demo2.png" src="http://matplotlib.sourceforge.net/_images/fancybox_demo2.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              34/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/_images/annotate_text_arrow.png" src="http://matplotlib.sourceforge.net/_images/annotate_text_arrow.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              35/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Annotation w/ Arrows</h2></header>
+            
+            
+            <section><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="s">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">ann</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s">&quot;Test&quot;</span><span class="p">,</span>
+                   <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">,</span>
+                   <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
+                   <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                   <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle3&quot;</span><span class="p">),</span>
+                   <span class="n">size</span><span class="o">=</span><span class="mi">30</span>
+                   <span class="p">)</span>
+</pre>
+<img alt="./demo08.jpg" src="./demo08.jpg" style="height: 300px;" />
+<p>annoation are dragable.</p>
+<pre><span class="n">ann</span><span class="o">.</span><span class="n">dragable</span><span class="p">()</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              36/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/fancyarrow_demo.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/fancyarrow_demo.hires.png" style="height: 500px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              37/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_00.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_00.hires.png" style="height: 450px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              38/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_01.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/annotation_demo2_01.hires.png" style="height: 450px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              39/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Text as path</h2></header>
+            
+            
+            <section><ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/examples/pylab_examples/demo_text_path.html">http://matplotlib.sourceforge.net/examples/pylab_examples/demo_text_path.html</a></li>
+</ul>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_text_path.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_text_path.hires.png" style="height: 500px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              40/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>patheffects</h2></header>
+            
+            
+            <section><ul class="simple">
+<li>override draw_path method of the backends</li>
+</ul>
+<pre><span class="kn">from</span> <span class="nn">matplotlib.patheffects</span> <span class="kn">import</span> <span class="n">withStroke</span>
+<span class="n">imshow</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&quot;bilinear&quot;</span><span class="p">)</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="n">annotate</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+               <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span>
+                               <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle3&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+               <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">txt</span><span class="o">.</span><span class="n">set_path_effects</span><span class="p">([</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s">&quot;w&quot;</span><span class="p">)])</span>
+<span class="n">txt</span><span class="o">.</span><span class="n">arrow_patch</span><span class="o">.</span><span class="n">set_path_effects</span><span class="p">([</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s">&quot;w&quot;</span><span class="p">)])</span>
+</pre>
+<img alt="http://matplotlib.sourceforge.net/_images/patheffect_demo.png" src="http://matplotlib.sourceforge.net/_images/patheffect_demo.png" style="width: 700px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              41/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Legend</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>legend of complex plots : new in v1.1</li>
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/rc/v1.1.0rc1/examples/pylab_examples/legend_demo4.html">example</a></li>
+</ul>
+<img alt="http://matplotlib.sourceforge.net/rc/v1.1.0rc1/mpl_examples/pylab_examples/legend_demo4.hires.png" src="http://matplotlib.sourceforge.net/rc/v1.1.0rc1/mpl_examples/pylab_examples/legend_demo4.hires.png" style="height: 400px;" />
+<ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/users/legend_guide.html">http://matplotlib.sourceforge.net/users/legend_guide.html</a></li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              42/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/users/legend_guide.html#legend-location">http://matplotlib.sourceforge.net/users/legend_guide.html#legend-location</a></li>
+<li>use <strong>bbox_to_anchor</strong> and <strong>bbox_transform</strong> parameters to adjust the legend location.</li>
+</ul>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/users/plotting/examples/simple_legend01.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/users/plotting/examples/simple_legend01.hires.png" style="height: 450px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              43/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>OffsetBox</h2></header>
+            
+            
+            <section><ul class="simple">
+<li>can be used for artists w/ mixed coordinate systems<ul>
+<li>size : data transform</li>
+<li>position : normalized axes transform</li>
+</ul>
+</li>
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/examples/axes_grid/simple_anchored_artists.html">http://matplotlib.sourceforge.net/examples/axes_grid/simple_anchored_artists.html</a></li>
+</ul>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/simple_anchored_artists.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/simple_anchored_artists.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              44/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Inset Axes</h1></header>
+            
+            
+            <section><ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo.html">http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo.html</a></li>
+</ul>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/inset_locator_demo.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/axes_grid/inset_locator_demo.hires.png" style="width: 600px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              45/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><pre><span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">inset_axes</span><span class="p">,</span> <span class="n">zoomed_inset_axes</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.anchored_artists</span> <span class="kn">import</span> <span class="n">AnchoredSizeBar</span>
+
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+
+<span class="n">axins</span> <span class="o">=</span> <span class="n">inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span>
+                   <span class="n">width</span><span class="o">=</span><span class="s">&quot;30%&quot;</span><span class="p">,</span> <span class="c"># width = 30% of parent_bbox</span>
+                   <span class="n">height</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="c"># height : 1 inch</span>
+                  <span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">axins</span><span class="o">.</span><span class="n">axis</span><span class="p">[:]</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span><span class="n">ticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              46/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Inset Axes w/ zoom</h2></header>
+            
+            
+            <section><ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo2.html">http://matplotlib.sourceforge.net/examples/axes_grid/inset_locator_demo2.html</a></li>
+</ul>
+<pre><span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># zoom = 6</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              47/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Agg filter</h2></header>
+            
+            
+            <section><ul class="simple">
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/examples/pylab_examples/demo_agg_filter.html">http://matplotlib.sourceforge.net/examples/pylab_examples/demo_agg_filter.html</a></li>
+</ul>
+
+
+<h2>demo_aggfilter.py</h2>
+<img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_agg_filter.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/pylab_examples/demo_agg_filter.hires.png" style="height: 450px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              48/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>Mixed-mode renderer</h2></header>
+            
+            
+            <section><ul class="simple">
+<li>pdf backend and ps backend</li>
+<li>During the vector backend, temporarily change into rasterization
+mode. The result is rendered as an image in the vector mode</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              49/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>mpl_toolkits</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>mplot3d</li>
+<li>axes_grid1</li>
+<li>axis_artist</li>
+<li>etc.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              50/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>mplot3d</h2></header>
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/mplot3d/subplot3d_demo.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_examples/mplot3d/subplot3d_demo.hires.png" style="width: 750px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              51/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h2>axisartist</h2></header>
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axis.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axis.hires.png" style="height: 600px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              52/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axes.hires.png" src="http://matplotlib.sourceforge.net/plot_directive/mpl_toolkits/axes_grid/examples/demo_floating_axes.hires.png" style="width: 750px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              53/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Gallery</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              54/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/lbvs/fig_lbvs.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/lbvs/fig_lbvs.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              55/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/tycho/tycho_hst_kpno_01.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/tycho/tycho_hst_kpno_01.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              56/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="./isc_stamps.jpg" src="./isc_stamps.jpg" style="height: 550px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              57/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/cfasurvey/cfa_survey.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/cfasurvey/cfa_survey.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              58/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: mpl_advanced.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            
+            <section><img alt="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/healpix/allsky_galactic_proj_06.hires.png" src="http://leejjoon.github.com/matplotlib_astronomy_gallery/plot_directive/healpix/allsky_galactic_proj_06.hires.png" style="height: 400px;" /></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="mpl_advanced.rst">mpl_advanced.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              59/59
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Publication quality figures w/ Matplotlib</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-2" class="sub">
+          <th><a href="#slide2">Publication quality figures w/ Matplotlib</a></th>
+          <td><a href="#slide2">2</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">matplotlib : a python 2D plotting library</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-4" class="sub">
+          <th><a href="#slide4">Matplotlib</a></th>
+          <td><a href="#slide4">4</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">matplotlib tries to make easy things easy and hard things possible!</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">RTFM</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Matplotlib design</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Backends</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Frontends : APIs</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">What does draw() do?</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Pylab interface</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Figure</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">GridSpec : advanced subplot</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-23" class="sub">
+          <th><a href="#slide23">Embedded subplots</a></th>
+          <td><a href="#slide23">23</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Axes w/ a fixed aspec ratio</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-26">
+        <th><a href="#slide26">mpl_toolkits.axes_grid1</a></th>
+        <td><a href="#slide26">26</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-30" class="sub">
+          <th><a href="#slide30">tight_layout &amp; savefig w/ bbox_inches=&quot;tight&quot;</a></th>
+          <td><a href="#slide30">30</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-31">
+        <th><a href="#slide31">Path</a></th>
+        <td><a href="#slide31">31</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-33">
+        <th><a href="#slide33">Text &amp; TeX</a></th>
+        <td><a href="#slide33">33</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-34">
+        <th><a href="#slide34">Annotation</a></th>
+        <td><a href="#slide34">34</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-36" class="sub">
+          <th><a href="#slide36">Annotation w/ Arrows</a></th>
+          <td><a href="#slide36">36</a></td>
+        </tr>
+        
+        <tr id="toc-row-40" class="sub">
+          <th><a href="#slide40">Text as path</a></th>
+          <td><a href="#slide40">40</a></td>
+        </tr>
+        
+        <tr id="toc-row-41" class="sub">
+          <th><a href="#slide41">patheffects</a></th>
+          <td><a href="#slide41">41</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-42">
+        <th><a href="#slide42">Legend</a></th>
+        <td><a href="#slide42">42</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-44" class="sub">
+          <th><a href="#slide44">OffsetBox</a></th>
+          <td><a href="#slide44">44</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-45">
+        <th><a href="#slide45">Inset Axes</a></th>
+        <td><a href="#slide45">45</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-47" class="sub">
+          <th><a href="#slide47">Inset Axes w/ zoom</a></th>
+          <td><a href="#slide47">47</a></td>
+        </tr>
+        
+        <tr id="toc-row-48" class="sub">
+          <th><a href="#slide48">Agg filter</a></th>
+          <td><a href="#slide48">48</a></td>
+        </tr>
+        
+        <tr id="toc-row-49" class="sub">
+          <th><a href="#slide49">Mixed-mode renderer</a></th>
+          <td><a href="#slide49">49</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-50">
+        <th><a href="#slide50">mpl_toolkits</a></th>
+        <td><a href="#slide50">50</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-51" class="sub">
+          <th><a href="#slide51">mplot3d</a></th>
+          <td><a href="#slide51">51</a></td>
+        </tr>
+        
+        <tr id="toc-row-52" class="sub">
+          <th><a href="#slide52">axisartist</a></th>
+          <td><a href="#slide52">52</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-54">
+        <th><a href="#slide54">Gallery</a></th>
+        <td><a href="#slide54">54</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
