@@ -3,11 +3,6 @@ Publication quality figures w/ Matplotlib
 
 ----
 
-http://goo.gl/SOMbY
-===================
-
-----
-
 Publication quality figures w/ Matplotlib
 -----------------------------------------
 
@@ -30,7 +25,7 @@ Matplotlib
  - and interactive environments (gtk, tk, qt, wx, html5, etc)
  - across platforms (linux&unix, mac os X, windows). 
 
-- When integrated with ipython, provides a powerful interactive environment (ala MATLAB® or Mathematica®).
+- When integrated with ipython, provides a powerful interactive environment (ala MATLAB or Mathematica).
 
 ----
 

@@ -3,11 +3,6 @@ Brief overview of Astronomy-related python modules
 
 ----
 
-http://goo.gl/rwWhB
-===================
-
-----
-
 Incomplete & Biased
 ===================
 
@@ -30,12 +25,12 @@ Get familiar with Python Standard library
 
 - String Services
 
- - string — Common string operations
- - re — Regular expression operations
+ - string - Common string operations
+ - re - Regular expression operations
 
 - Python Runtime Services
 
- - sys — System-specific parameters and functions
+ - sys - System-specific parameters and functions
 
 
 ----
@@ -43,29 +38,29 @@ Get familiar with Python Standard library
 
 - Numeric and Mathematical Modules
 
- - itertools — Functions creating iterators for efficient looping
- - functools — Higher order functions and operations on callable objects
- - operator — Standard operators as functions
+ - itertools - Functions creating iterators for efficient looping
+ - functools - Higher order functions and operations on callable objects
+ - operator - Standard operators as functions
 
 
 - File and Directory Access
 
- - os.path — Common pathname manipulations
- - tempfile — Generate temporary files and directories
- - glob — Unix style pathname pattern expansion
- - shutil — High-level file operations
+ - os.path - Common pathname manipulations
+ - tempfile - Generate temporary files and directories
+ - glob - Unix style pathname pattern expansion
+ - shutil - High-level file operations
 
 ----
 
 - Data Persistence
 
- - pickle — Python object serialization
- - sqlite3 — DB-API 2.0 interface for SQLite databases
+ - pickle - Python object serialization
+ - sqlite3 - DB-API 2.0 interface for SQLite databases
 
 
-- Interprocess Communication and Networking
+ - Interprocess Communication and Networking
 
- - subprocess — Subprocess management
+ - subprocess - Subprocess management
 
 ----
 
@@ -167,10 +162,9 @@ demo_kdtree.py
 Scikits
 =======
 
-http://scikits.appspot.com/scikits
+- http://scikits.appspot.com/scikits
 
-
-- simple fitting w/ nmpfit : http://stsdas.stsci.edu/pyraf/stscidocs/pytools_pkg/pytools_api/pytools.nmpfit-module.html
+- `simple fitting w/ nmpfit <http://stsdas.stsci.edu/pyraf/stscidocs/pytools_pkg/pytools_api/pytools.nmpfit-module.html>`_
 
 
 
