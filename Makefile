@@ -1,12 +1,12 @@
-all: mpl_advanced2.html astropy2.html
+all: mpl_advanced.html astropy.html
 
-mpl_advanced2.html: mpl_advanced.rst
-	landslide -d mpl_advanced.html -c mpl_advanced.rst
-	cat mpl_advanced.html | sed "s#file://`pwd`#.#g" > mpl_advanced2.html
+mpl_advanced.html: mpl_advanced.rst
+	landslide -d mpl_advanced_orig.html -c mpl_advanced.rst
+	cat mpl_advanced_orig.html | sed "s#file://`pwd`#.#g" > mpl_advanced.html
 
-astropy2.html: astropy.rst
-	landslide -d astropy.html -c astropy.rst
-	cat astropy.html | sed "s#file://`pwd`#.#g" > astropy2.html
+astropy.html: astropy.rst
+	landslide -d astropy_orig.html -c astropy.rst
+	cat astropy_orig.html | sed "s#file://`pwd`#.#g" > astropy.html
 
 rsync:
 	rsync -avz . /home/jjlee/Dropbox/Public/Slides-for-2011-Jeju-Python-Workshop
